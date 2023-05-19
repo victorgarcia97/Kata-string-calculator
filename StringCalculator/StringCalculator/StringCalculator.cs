@@ -22,11 +22,16 @@ namespace StringCalculatorKata
             }
 
             var numbersList = numbers.ToCharArray();
-            var sum = 0;
+            
+            return Sum(numbersList, defaultDelimiters);
+        }
 
+        private static int Sum(char[] numbersList, char[] defaultDelimiters)
+        {
+            var sum = 0;
             foreach (var number in numbersList)
             {
-                if(defaultDelimiters.Any(d => d == number)) continue;
+                if (defaultDelimiters.Any(d => d == number)) continue;
                 sum += int.Parse(number.ToString());
             }
 
