@@ -1,4 +1,5 @@
 using FluentAssertions;
+using FluentAssertions.Extensions;
 using StringCalculatorKata;
 
 namespace StringCalculatorTests
@@ -34,6 +35,13 @@ namespace StringCalculatorTests
             var result = StringCalculator.Add(numbers);
 
             result.Should().Be(expectedSum);
+        }
+
+        [Test]
+        public void FailWhenNegativeNumberIsFound()
+        {
+            var action = () =>  StringCalculator.Add("-3,4");
+            action.Should().Throw<InvalidOperationException>().WithMessage("-3");
         }
     }
 }
