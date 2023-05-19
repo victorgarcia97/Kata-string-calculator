@@ -17,5 +17,13 @@ namespace StringCalculatorTests
 
             result.Should().Be(0);
         }
+
+        [Test]
+        public void ReturnSumOfInputNumbers()
+        {
+            var result = StringCalculator.Add("1,2");
+
+            result.Should().Be(3);
+        }
     }
 }
