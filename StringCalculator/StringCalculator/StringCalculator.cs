@@ -10,7 +10,15 @@ namespace StringCalculatorKata
     {
         public static int Add(string numbers)
         {
-            return 0;
+            if (numbers == "") return 0;
+
+            var numberList = numbers.Split(',');
+
+            var firstNumber = int.Parse(numberList[0]);
+            var secondNumber = int.Parse(numberList[1]);
+
+
+            return  firstNumber + secondNumber;
         }
     }
 }
