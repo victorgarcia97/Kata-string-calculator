@@ -1,4 +1,7 @@
-namespace StringCalculator.Tests
+using FluentAssertions;
+using StringCalculatorKata;
+
+namespace StringCalculatorTests
 {
     public class StringCalculatorShould
     {
@@ -8,9 +11,11 @@ namespace StringCalculator.Tests
         }
 
         [Test]
-        public void Test1()
+        public void ReturnZeroWhenStringIsEmpty()
         {
-            Assert.Pass();
+            var result = StringCalculator.Add("");
+
+            result.Should().Be(0);
         }
     }
 }

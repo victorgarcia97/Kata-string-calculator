@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StringCalculator
+namespace StringCalculatorKata
 {
     public class StringCalculator
     {
+        public static int Add(string numbers)
+        {
+            return 0;
+        }
     }
 }
