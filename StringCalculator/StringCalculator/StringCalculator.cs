@@ -15,7 +15,7 @@ namespace StringCalculatorKata
             var numberList = numbers.Split(',');
 
             var firstNumber = int.Parse(numberList[0]);
-            var secondNumber = int.Parse(numberList[1]);
+            var secondNumber = numberList.Length > 1 ? int.Parse(numberList[1]) : 0;
 
 
             return  firstNumber + secondNumber;
