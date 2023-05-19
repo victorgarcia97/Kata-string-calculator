@@ -37,11 +37,13 @@ namespace StringCalculatorTests
             result.Should().Be(expectedSum);
         }
 
-        [Test]
-        public void FailWhenNegativeNumberIsFound()
+        [Theory]
+        [TestCase("-3,4", "-3")]
+        [TestCase("-3,-4,4", "-3,-4")]
+        public void FailWhenNegativeNumberIsFound(string numbers, string expectedMessage)
         {
-            var action = () =>  StringCalculator.Add("-3,4");
-            action.Should().Throw<InvalidOperationException>().WithMessage("-3");
+            var action = () =>  StringCalculator.Add(numbers);
+            action.Should().Throw<InvalidOperationException>().WithMessage(expectedMessage);
         }
     }
 }

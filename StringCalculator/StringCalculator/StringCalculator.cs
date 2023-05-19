@@ -38,22 +38,33 @@ namespace StringCalculatorKata
             foreach (var stringNumber in numbersList)
             {
                 var number = int.Parse(stringNumber);
-                if (number < 0)
-                {
-                    negatives.Add(number);
-                    continue;
-                }
-
+                if (CheckForNegative(number, negatives)) continue;
                 sum += number;
             }
 
-            if (negatives.Count > 0)
-            {
-                var join = string.Join(", ", negatives);
-                throw new InvalidOperationException(join);
-            }
+            ThrowExceptionIfNegativeNumbers(negatives);
 
             return sum;
+        }
+
+        private static void ThrowExceptionIfNegativeNumbers(List<int> negatives)
+        {
+            if (negatives.Count > 0)
+            {
+                var join = string.Join(",", negatives);
+                throw new InvalidOperationException(join);
+            }
+        }
+
+        private static bool CheckForNegative(int number, List<int> negatives)
+        {
+            if (number < 0)
+            {
+                negatives.Add(number);
+                return true;
+            }
+
+            return false;
         }
     }
 }
