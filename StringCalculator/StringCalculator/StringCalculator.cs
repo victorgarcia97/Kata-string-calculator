@@ -12,30 +12,45 @@ namespace StringCalculatorKata
         {
             if (numbers == "") return 0;
 
-            var defaultDelimiters = new char[] { ',', '\n' };
+            var defaultDelimiter = ",";
 
-            CheckForNewDelimiters(ref numbers, ref defaultDelimiters);
+            CheckForNewDelimiters(ref numbers, ref defaultDelimiter);
 
-            return Sum(numbers.ToCharArray(), defaultDelimiters);
+            return Sum(numbers, defaultDelimiter);
         }
 
-        private static void CheckForNewDelimiters(ref string numbers, ref char[] defaultDelimiters)
+        private static void CheckForNewDelimiters(ref string numbers, ref string defaultDelimiters)
         {
             if (numbers.StartsWith("\\"))
             {
                 var splitNumbers = numbers.Split('\n');
-                defaultDelimiters = splitNumbers[0].Substring(1, 1).ToCharArray();
+                defaultDelimiters = splitNumbers[0].Substring(1, 1);
                 numbers = splitNumbers[1];
             }
         }
 
-        private static int Sum(char[] numbersList, char[] defaultDelimiters)
+        private static int Sum(string numbers, string defaultDelimiter)
         {
             var sum = 0;
-            foreach (var number in numbersList)
+            var negatives = new List<int>();
+            var numbersList = numbers.Replace("\n", defaultDelimiter).Split(defaultDelimiter);
+
+            foreach (var stringNumber in numbersList)
             {
-                if (defaultDelimiters.Any(d => d == number)) continue;
-                sum += int.Parse(number.ToString());
+                var number = int.Parse(stringNumber);
+                if (number < 0)
+                {
+                    negatives.Add(number);
+                    continue;
+                }
+
+                sum += number;
+            }
+
+            if (negatives.Count > 0)
+            {
+                var join = string.Join(", ", negatives);
+                throw new InvalidOperationException(join);
             }
 
             return sum;
