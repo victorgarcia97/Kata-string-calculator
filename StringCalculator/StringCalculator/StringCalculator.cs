@@ -12,13 +12,13 @@ namespace StringCalculatorKata
         {
             if (numbers == "") return 0;
 
-            var numberList = numbers.Split(',');
-
+            var numbersList = numbers.ToCharArray();
             var sum = 0;
 
-            foreach (var number in numberList)
+            foreach (var number in numbersList)
             {
-                sum += int.Parse(number);
+                if(number == ',' || number == '\n') continue;
+                sum += int.Parse(number.ToString());
             }
 
             return sum;

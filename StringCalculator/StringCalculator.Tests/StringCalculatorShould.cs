@@ -25,6 +25,8 @@ namespace StringCalculatorTests
         [TestCase("2", 2)]
         [TestCase("1,2,3", 6)]
         [TestCase("1,2,3,4", 10)]
+        [TestCase("1\n2,3,4", 10)]
+        [TestCase("2\n2,2\n2", 8)]
         public void ReturnSumOfInputNumbers(string numbers, int expectedSum)
         {
             var result = StringCalculator.Add(numbers);
