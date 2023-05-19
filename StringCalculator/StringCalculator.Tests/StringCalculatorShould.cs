@@ -18,12 +18,14 @@ namespace StringCalculatorTests
             result.Should().Be(0);
         }
 
-        [Test]
-        public void ReturnSumOfInputNumbers()
+        [Theory]
+        [TestCase("1,2", 3)]
+        [TestCase("1", 1)]
+        public void ReturnSumOfInputNumbers(string numbers, int expectedSum)
         {
-            var result = StringCalculator.Add("1,2");
+            var result = StringCalculator.Add(numbers);
 
-            result.Should().Be(3);
+            result.Should().Be(expectedSum);
         }
     }
 }
