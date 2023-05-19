@@ -14,11 +14,14 @@ namespace StringCalculatorKata
 
             var numberList = numbers.Split(',');
 
-            var firstNumber = int.Parse(numberList[0]);
-            var secondNumber = numberList.Length > 1 ? int.Parse(numberList[1]) : 0;
+            var sum = 0;
 
+            foreach (var number in numberList)
+            {
+                sum += int.Parse(number);
+            }
 
-            return  firstNumber + secondNumber;
+            return sum;
         }
     }
 }
