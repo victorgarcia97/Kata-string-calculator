@@ -14,16 +14,19 @@ namespace StringCalculatorKata
 
             var defaultDelimiters = new char[] { ',', '\n' };
 
+            CheckForNewDelimiters(ref numbers, ref defaultDelimiters);
+
+            return Sum(numbers.ToCharArray(), defaultDelimiters);
+        }
+
+        private static void CheckForNewDelimiters(ref string numbers, ref char[] defaultDelimiters)
+        {
             if (numbers.StartsWith("\\"))
             {
                 var splitNumbers = numbers.Split('\n');
                 defaultDelimiters = splitNumbers[0].Substring(1, 1).ToCharArray();
                 numbers = splitNumbers[1];
             }
-
-            var numbersList = numbers.ToCharArray();
-            
-            return Sum(numbersList, defaultDelimiters);
         }
 
         private static int Sum(char[] numbersList, char[] defaultDelimiters)
